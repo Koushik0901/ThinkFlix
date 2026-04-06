@@ -1,0 +1,157 @@
+{
+  "title": "Gemma: Google's Open Model Family Briefing",
+  "audience": "busy technical leadership",
+  "target_duration_seconds": 240,
+  "sections": [
+    {
+      "kind": "intro",
+      "heading": "What Gemma Is",
+      "takeaway": "Gemma is Google's lightweight, source-available model family related to Gemini.",
+      "narration": "This briefing summarizes Gemma, a family of large language models developed by Google DeepMind and based on technologies related to Gemini. The source describes Gemma as a lightweight model family that has evolved across multiple generations, including specialized variants for code, vision-language tasks, medical applications, safety filtering, and other domains. The practical briefing question is not just what Gemma is, but how the family has expanded and why that matters for teams evaluating local or source-available models.",
+      "slide_bullets": [
+        "Developed by Google DeepMind",
+        "Related to Gemini technology",
+        "Includes general and specialized variants"
+      ],
+      "visual_mode": "generated_image",
+      "visual_role": "Introduce Gemma as a family rather than a single model release.",
+      "image_prompt": "A source-grounded abstract visual of an evolving open model family: one glowing core branching into several related luminous paths, premium dark background, no text, no logos, no screens, no people, no invented products.",
+      "visual_caption": "Gemma should read as a family, not a single release.",
+      "visual_grounding_notes": "The source describes Gemma as a family with multiple generations and specialized variants.",
+      "citations": [
+        {
+          "source": "Gemma language model PDF source",
+          "url": "data/input/Gemma_(language_model).pdf",
+          "note": "Source PDF focused on the Gemma model family, releases, variants, and specifications."
+        }
+      ]
+    },
+    {
+      "kind": "key_point",
+      "heading": "Release Timeline",
+      "takeaway": "Gemma moved from initial 2024 releases to broader model generations and variants.",
+      "narration": "The first key point is timeline. The source describes Gemma's first release in February 2024, followed by Gemma 2 in June 2024, Gemma 3 in March 2025, and Gemma 4 in April 2026. That progression matters because it shows an active model family rather than a single static release. For an engineering team, the timeline also signals that model evaluation should be repeatable: new generations can change capabilities, context length, modality support, and deployment assumptions.",
+      "slide_bullets": [
+        "Gemma 1 arrived in February 2024",
+        "Gemma 2 and Gemma 3 expanded the family",
+        "Gemma 4 is listed as the 2026 stable release"
+      ],
+      "visual_mode": "diagram",
+      "visual_role": "Make the release sequence easy to scan.",
+      "image_prompt": null,
+      "visual_caption": "The family evolved quickly across 2024 to 2026.",
+      "visual_grounding_notes": "The source gives explicit release timing for Gemma 1 through Gemma 4.",
+      "citations": [
+        {
+          "source": "Gemma language model PDF source",
+          "url": "data/input/Gemma_(language_model).pdf",
+          "note": "Source PDF focused on the Gemma model family, releases, variants, and specifications."
+        }
+      ]
+    },
+    {
+      "kind": "key_point",
+      "heading": "Specialized Variants",
+      "takeaway": "The Gemma family includes models for code, vision-language, safety, and medicine.",
+      "narration": "The second key point is specialization. The PDF lists variants such as CodeGemma for code generation, PaliGemma for vision-language tasks, ShieldGemma for safety filtering, and MedGemma for medical use cases. This positions Gemma as a platform family, not just one text model. In a briefing context, that distinction is important: the relevant question becomes which branch fits the job, rather than whether one general model should handle every workflow.",
+      "slide_bullets": [
+        "CodeGemma targets code generation",
+        "PaliGemma supports vision-language workflows",
+        "ShieldGemma and MedGemma target safety and medical use cases"
+      ],
+      "visual_mode": "generated_image",
+      "visual_role": "Show one family branching into specialized paths.",
+      "image_prompt": "A source-grounded abstract branching visual for the Gemma model family: one central glowing hub splitting into four distinct but related luminous branches, each differentiated only by color, spacing, geometry, and material texture to represent code, vision-language, safety, and medical specialization without letters, symbols, markings, screens, logos, or people.",
+      "visual_caption": "Specialization is a core part of the family structure.",
+      "visual_grounding_notes": "The source explicitly lists specialized Gemma variants across several domains.",
+      "citations": [
+        {
+          "source": "Gemma language model PDF source",
+          "url": "data/input/Gemma_(language_model).pdf",
+          "note": "Source PDF focused on the Gemma model family, releases, variants, and specifications."
+        }
+      ]
+    },
+    {
+      "kind": "key_point",
+      "heading": "Technical Shape",
+      "takeaway": "The extracted table preserves parameters, context length, modalities, and notes.",
+      "narration": "The third key point is technical shape. The PDF contains a table of Gemma model specifications, including generation, release date, parameter sizes, context length, multimodal support, and notes. Preserving that table is important because it lets the briefing compare versions without flattening structured facts into ambiguous prose. It also shows that Gemma changes meaningfully across generations: context length, modality support, and architecture notes differ by release.",
+      "slide_bullets": [
+        "Table fields include generation and release date",
+        "Parameter sizes and context lengths are preserved",
+        "Multimodal support is explicit in the extracted source"
+      ],
+      "visual_mode": "table_focus",
+      "visual_role": "Focus attention on structured comparison fields from the extracted table.",
+      "image_prompt": null,
+      "visual_caption": "The table is the source of truth for cross-generation comparison.",
+      "visual_grounding_notes": "The source includes a structured table with fields for generation, release, parameters, context, and modality.",
+      "citations": [
+        {
+          "source": "Gemma language model PDF source",
+          "url": "data/input/Gemma_(language_model).pdf",
+          "note": "Source PDF focused on the Gemma model family, releases, variants, and specifications."
+        }
+      ]
+    },
+    {
+      "kind": "key_point",
+      "heading": "Access And Deployment",
+      "takeaway": "The source positions Gemma for broad developer access and consumer-device use cases.",
+      "narration": "The fourth key point is access and deployment. The source says Gemma models have had more than 150 million downloads and 70,000 variants. It also says Google offers Gemma 3n, smaller models optimized for consumer devices like phones, laptops, and tablets. Those details make Gemma relevant as a practical model family for teams comparing accessible model options, especially when device targets and deployment footprint matter.",
+      "slide_bullets": [
+        "More than 150M downloads are cited",
+        "70,000 model variants are cited",
+        "Gemma 3n targets consumer devices"
+      ],
+      "visual_mode": "diagram",
+      "visual_role": "Connect access scale with device-oriented deployment.",
+      "image_prompt": null,
+      "visual_caption": "Access matters when deployment targets broaden.",
+      "visual_grounding_notes": "The source cites downloads, variants, and device-targeted Gemma 3n deployments.",
+      "citations": [
+        {
+          "source": "Gemma language model PDF source",
+          "url": "data/input/Gemma_(language_model).pdf",
+          "note": "Source PDF focused on the Gemma model family, releases, variants, and specifications."
+        }
+      ]
+    },
+    {
+      "kind": "summary",
+      "heading": "Briefing Takeaway",
+      "takeaway": "Gemma is best understood as an evolving open-model family with specialized branches.",
+      "narration": "The summary is that Gemma is not just a single model name. It is an evolving family of Google DeepMind models with general, coding, multimodal, medical, and safety-oriented variants. The source-backed way to evaluate it is to compare the generations, specialized variants, parameter sizes, context lengths, modality support, and licensing notes together. That makes Gemma best understood as a model family with multiple branches rather than a single general-purpose release.",
+      "slide_bullets": [
+        "Treat Gemma as a model family",
+        "Compare generations and specialized variants",
+        "Check context, modality, and licensing notes"
+      ],
+      "visual_mode": "none",
+      "visual_role": "Keep the summary focused on evaluation guidance.",
+      "image_prompt": null,
+      "visual_caption": "The final slide should stay recommendation-led.",
+      "visual_grounding_notes": "The summary is decision-oriented and does not need added generated media.",
+      "citations": [
+        {
+          "source": "Gemma language model PDF source",
+          "url": "data/input/Gemma_(language_model).pdf",
+          "note": "Source PDF focused on the Gemma model family, releases, variants, and specifications."
+        }
+      ]
+    }
+  ],
+  "source_citations": [
+    {
+      "source": "Gemma language model PDF source",
+      "url": "data/input/Gemma_(language_model).pdf",
+      "note": "Source PDF focused on the Gemma model family, releases, variants, and specifications."
+    }
+  ],
+  "cost_notes": {
+    "fixed_compute": "PDF/text extraction, local planning, visual rendering, slide composition, TTS, validation, and FFmpeg assembly run on commodity CPU or local GPU.",
+    "bursty_compute": "Provider-generated still visuals are planner-selected and capped so only a small number of sections use remote generation.",
+    "marginal_cost": "Additional non-provider runs are near-zero cost; marginal cost mainly scales with extra generated still visuals."
+  }
+}

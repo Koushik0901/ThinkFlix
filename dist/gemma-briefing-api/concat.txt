@@ -1,0 +1,6 @@
+file 'E:/Workspace/ThinkFlix/dist/gemma-briefing-api/segments/section_01.mp4'
+file 'E:/Workspace/ThinkFlix/dist/gemma-briefing-api/segments/section_02.mp4'
+file 'E:/Workspace/ThinkFlix/dist/gemma-briefing-api/segments/section_03.mp4'
+file 'E:/Workspace/ThinkFlix/dist/gemma-briefing-api/segments/section_04.mp4'
+file 'E:/Workspace/ThinkFlix/dist/gemma-briefing-api/segments/section_05.mp4'
+file 'E:/Workspace/ThinkFlix/dist/gemma-briefing-api/segments/section_06.mp4'

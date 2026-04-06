@@ -2,10 +2,14 @@
 __pycache__/
 .pytest_cache/
 .ruff_cache/
+.env
 *.egg-info/
-dist/
+dist/*
+!dist/gemma-briefing-api/
+!dist/gemma-briefing-api/**
 build/
 *.pyc
 *.wav
 *.mp4
-
+!dist/gemma-briefing-api/**/*.wav
+!dist/gemma-briefing-api/**/*.mp4

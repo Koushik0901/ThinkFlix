@@ -35,29 +35,25 @@ class SlideSettings(BaseModel):
 
 
 class AudioSettings(BaseModel):
+    repo_id: str = "hexgrad/Kokoro-82M"
     voice: str = "af_heart"
     language_code: str = "a"
     sample_rate: int = Field(default=24000, ge=8000)
     fallback_words_per_minute: int = Field(default=145, ge=80, le=220)
 
 
-class VideoSettings(BaseModel):
-    mode: Literal["placeholder", "wan", "api", "skip"] = "api"
-    required_cutaways: int = Field(default=1, ge=1, le=3)
-    opportunistic_cutaways: int = Field(default=2, ge=0, le=3)
-    cutaway_duration_seconds: int = Field(default=6, ge=2, le=12)
-    api_provider: Literal["fal"] = "fal"
-    api_model: str = "fal-ai/wan/v2.2-a14b/text-to-video"
-    api_resolution: str = "480p"
-    api_aspect_ratio: str = "16:9"
-    api_num_frames: int = Field(default=81, ge=17, le=161)
-    api_frames_per_second: int = Field(default=16, ge=4, le=60)
-    api_num_inference_steps: int = Field(default=20, ge=1, le=60)
+class VisualSettings(BaseModel):
+    mode: Literal["local", "api"] = "api"
+    max_generated_images: int = Field(default=2, ge=0, le=3)
+    provider_video_duration_seconds: int = Field(default=6, ge=4, le=20)
+    api_provider: Literal["ltx"] = "ltx"
+    api_endpoint: str = "https://api.ltx.video/v1/text-to-video"
+    api_key_env_vars: list[str] = Field(default_factory=lambda: ["LTX_API_KEY", "LTXV_API_KEY"])
+    api_model: str = "ltx-2-3-fast"
+    api_resolution: str = "1920x1080"
     api_client_timeout_seconds: int = Field(default=900, ge=60)
-    wan_repo_path: str = "vendor/Wan2.2"
-    wan_task: str = "ti2v-5B"
-    wan_size: str = "1280*704"
-    wan_ckpt_dir: str = "models/Wan2.2-TI2V-5B"
+    api_retries: int = Field(default=2, ge=0, le=5)
+    api_fallback_to_placeholder: bool = True
 
 
 class AppConfig(BaseModel):
@@ -65,7 +61,7 @@ class AppConfig(BaseModel):
     briefing: BriefingSettings = Field(default_factory=BriefingSettings)
     slides: SlideSettings = Field(default_factory=SlideSettings)
     audio: AudioSettings = Field(default_factory=AudioSettings)
-    video: VideoSettings = Field(default_factory=VideoSettings)
+    visuals: VisualSettings = Field(default_factory=VisualSettings)
 
 
 def load_config(path: Path | None) -> AppConfig:

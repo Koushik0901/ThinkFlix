@@ -1,0 +1,16 @@
+{
+  "section_index": 1,
+  "provider": "ltx",
+  "endpoint": "https://api.ltx.video/v1/text-to-video",
+  "model": "ltx-2-3-fast",
+  "request": {
+    "prompt": "A source-grounded abstract visual of an evolving open model family: one glowing core branching into several related luminous paths, premium dark background, no text, no logos, no screens, no people, no invented products.",
+    "model": "ltx-2-3-fast",
+    "duration": 6,
+    "resolution": "1920x1080"
+  },
+  "visual_role": "Introduce Gemma as a family rather than a single model release.",
+  "visual_grounding_notes": "The source describes Gemma as a family with multiple generations and specialized variants.",
+  "expected_video_output": "E:\\Workspace\\ThinkFlix\\dist\\gemma-briefing-api\\visuals\\section_01_provider.mp4",
+  "expected_image_output": "E:\\Workspace\\ThinkFlix\\dist\\gemma-briefing-api\\visuals\\section_01.png"
+}

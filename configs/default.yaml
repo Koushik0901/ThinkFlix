@@ -21,25 +21,23 @@ slides:
   muted: "#94A3B8"
 
 audio:
+  repo_id: hexgrad/Kokoro-82M
   voice: af_heart
   language_code: a
   sample_rate: 24000
   fallback_words_per_minute: 145
 
-video:
+visuals:
   mode: api
-  required_cutaways: 1
-  opportunistic_cutaways: 2
-  cutaway_duration_seconds: 6
-  api_provider: fal
-  api_model: fal-ai/wan/v2.2-a14b/text-to-video
-  api_resolution: 480p
-  api_aspect_ratio: "16:9"
-  api_num_frames: 81
-  api_frames_per_second: 16
-  api_num_inference_steps: 20
+  max_generated_images: 2
+  provider_video_duration_seconds: 6
+  api_provider: ltx
+  api_endpoint: https://api.ltx.video/v1/text-to-video
+  api_key_env_vars:
+    - LTX_API_KEY
+    - LTXV_API_KEY
+  api_model: ltx-2-3-fast
+  api_resolution: "1920x1080"
   api_client_timeout_seconds: 900
-  wan_repo_path: vendor/Wan2.2
-  wan_task: ti2v-5B
-  wan_size: "1280*704"
-  wan_ckpt_dir: models/Wan2.2-TI2V-5B
+  api_retries: 2
+  api_fallback_to_placeholder: true

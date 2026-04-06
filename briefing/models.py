@@ -21,8 +21,11 @@ class BriefingSection(BaseModel):
     takeaway: str = Field(min_length=1, max_length=220)
     narration: str = Field(min_length=20)
     slide_bullets: list[str] = Field(min_length=2, max_length=5)
-    visual_prompt: str = Field(min_length=1)
-    broll_prompt: str = Field(min_length=1)
+    visual_mode: Literal["none", "diagram", "generated_image", "table_focus"] = "diagram"
+    visual_role: str = Field(min_length=1, max_length=120)
+    image_prompt: str | None = None
+    visual_caption: str | None = None
+    visual_grounding_notes: str = Field(min_length=1, max_length=240)
     citations: list[Citation] = Field(default_factory=list)
 
     @field_validator("slide_bullets")
@@ -33,16 +36,13 @@ class BriefingSection(BaseModel):
                 raise ValueError("slide bullets must stay presentation-length")
         return bullets
 
-
-class CutawayJob(BaseModel):
-    model_config = ConfigDict(str_strip_whitespace=True)
-
-    id: str = Field(pattern=r"^[a-z0-9_-]+$")
-    prompt: str = Field(min_length=10)
-    duration_seconds: float = Field(gt=0, le=12)
-    required: bool = True
-    status: Literal["planned", "generated", "placeholder", "skipped"] = "planned"
-    output_path: str | None = None
+    @model_validator(mode="after")
+    def validate_visual_fields(self) -> "BriefingSection":
+        if self.visual_mode == "generated_image" and not self.image_prompt:
+            raise ValueError("generated_image sections must include an image_prompt")
+        if self.visual_mode != "generated_image" and self.image_prompt:
+            raise ValueError("only generated_image sections may include an image_prompt")
+        return self
 
 
 class CostNotes(BaseModel):
@@ -59,7 +59,6 @@ class BriefingPlan(BaseModel):
     target_duration_seconds: int = Field(ge=180, le=300)
     sections: list[BriefingSection] = Field(min_length=5, max_length=7)
     source_citations: list[Citation] = Field(min_length=1)
-    cutaway_jobs: list[CutawayJob] = Field(min_length=1)
     cost_notes: CostNotes
 
     @model_validator(mode="after")
@@ -71,7 +70,6 @@ class BriefingPlan(BaseModel):
             raise ValueError("last section must be summary")
         if "key_point" not in kinds:
             raise ValueError("briefing must include key points")
-        if not any(job.required for job in self.cutaway_jobs):
-            raise ValueError("at least one cutaway job must be required")
+        if sum(section.visual_mode == "generated_image" for section in self.sections) > 2:
+            raise ValueError("briefings may include at most two generated_image sections")
         return self
-

@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import math
+import warnings
 import wave
+from functools import lru_cache
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import soundfile as sf
@@ -24,9 +27,7 @@ def wav_duration_seconds(path: Path) -> float:
 
 
 def _synthesize_with_kokoro(text: str, output_path: Path, settings: AudioSettings) -> float:
-    from kokoro import KPipeline
-
-    pipeline = KPipeline(lang_code=settings.language_code)
+    pipeline = _kokoro_pipeline(settings.language_code, settings.repo_id)
     chunks: list[np.ndarray] = []
     for _, _, audio in pipeline(text, voice=settings.voice):
         chunks.append(np.asarray(audio, dtype=np.float32))
@@ -35,6 +36,24 @@ def _synthesize_with_kokoro(text: str, output_path: Path, settings: AudioSetting
     audio = np.concatenate(chunks)
     sf.write(output_path, audio, settings.sample_rate)
     return wav_duration_seconds(output_path)
+
+
+@lru_cache(maxsize=4)
+def _kokoro_pipeline(language_code: str, repo_id: str) -> Any:
+    from kokoro import KPipeline
+
+    with warnings.catch_warnings():
+        warnings.filterwarnings(
+            "ignore",
+            message="dropout option adds dropout after all but last recurrent layer.*",
+            category=UserWarning,
+        )
+        warnings.filterwarnings(
+            "ignore",
+            message="`torch.nn.utils.weight_norm` is deprecated.*",
+            category=FutureWarning,
+        )
+        return KPipeline(lang_code=language_code, repo_id=repo_id)
 
 
 def _synthesize_placeholder(text: str, output_path: Path, settings: AudioSettings) -> float:
@@ -51,4 +70,3 @@ def _synthesize_placeholder(text: str, output_path: Path, settings: AudioSetting
             value = int(32767 * envelope * math.sin(2 * math.pi * 220 * sample / sample_rate))
             handle.writeframesraw(value.to_bytes(2, byteorder="little", signed=True))
     return wav_duration_seconds(output_path)
-

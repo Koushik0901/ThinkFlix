@@ -40,6 +40,8 @@ def build_render_image_segment_command(segment: Segment) -> list[str]:
     ]
     if segment.audio_path is not None:
         command.extend(["-i", str(segment.audio_path)])
+    else:
+        command.extend(["-f", "lavfi", "-i", "anullsrc=channel_layout=mono:sample_rate=48000"])
     command.extend(
         [
             "-vf",
@@ -53,9 +55,38 @@ def build_render_image_segment_command(segment: Segment) -> list[str]:
         ]
     )
     if segment.audio_path is not None:
-        command.extend(["-af", "apad", "-t", f"{segment.duration_seconds:.3f}", "-c:a", "aac", "-b:a", "160k"])
+        command.extend(
+            [
+                "-af",
+                "aresample=48000,apad",
+                "-t",
+                f"{segment.duration_seconds:.3f}",
+                "-c:a",
+                "aac",
+                "-b:a",
+                "160k",
+                "-ar",
+                "48000",
+                "-ac",
+                "1",
+            ]
+        )
     else:
-        command.extend(["-an"])
+        command.extend(
+            [
+                "-t",
+                f"{segment.duration_seconds:.3f}",
+                "-c:a",
+                "aac",
+                "-b:a",
+                "64k",
+                "-ar",
+                "48000",
+                "-ac",
+                "1",
+                "-shortest",
+            ]
+        )
     command.append(str(segment.output_path))
     return command
 
@@ -82,6 +113,10 @@ def concat_segments(segment_paths: list[Path], output_path: Path) -> Path:
         "libx264",
         "-c:a",
         "aac",
+        "-ar",
+        "48000",
+        "-ac",
+        "1",
         "-pix_fmt",
         "yuv420p",
         str(output_path),
