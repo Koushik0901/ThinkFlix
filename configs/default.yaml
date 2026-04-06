@@ -1,0 +1,45 @@
+llm:
+  provider: ollama
+  model: gemma4
+  fallback_model: gemma4:e4b
+  ollama_url: http://localhost:11434
+  timeout_seconds: 180
+  retries: 2
+
+briefing:
+  audience: "busy technical leadership"
+  target_duration_seconds: 240
+  max_sections: 6
+  min_sections: 5
+
+slides:
+  width: 1920
+  height: 1080
+  background: "#0B1020"
+  foreground: "#F8FAFC"
+  accent: "#6EE7B7"
+  muted: "#94A3B8"
+
+audio:
+  voice: af_heart
+  language_code: a
+  sample_rate: 24000
+  fallback_words_per_minute: 145
+
+video:
+  mode: api
+  required_cutaways: 1
+  opportunistic_cutaways: 2
+  cutaway_duration_seconds: 6
+  api_provider: fal
+  api_model: fal-ai/wan/v2.2-a14b/text-to-video
+  api_resolution: 480p
+  api_aspect_ratio: "16:9"
+  api_num_frames: 81
+  api_frames_per_second: 16
+  api_num_inference_steps: 20
+  api_client_timeout_seconds: 900
+  wan_repo_path: vendor/Wan2.2
+  wan_task: ti2v-5B
+  wan_size: "1280*704"
+  wan_ckpt_dir: models/Wan2.2-TI2V-5B
